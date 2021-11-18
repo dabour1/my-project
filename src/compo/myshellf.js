@@ -7,11 +7,11 @@ function Shellf ({title ,booke , moveshelf}) {
                   <h2 className="bookshelf-title">{title}</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                      {booke.map( c => ( 
+                      {booke.map(function (c) { return ( 
                       <li  key={c.id}>
                         <Cover  book={c} moveshelf={moveshelf} />
                       
-                      </li> ))}
+                      </li> )})}
                       
        
            
