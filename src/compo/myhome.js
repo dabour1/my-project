@@ -4,7 +4,7 @@ import Shellf from './myshellf'
 
 
 
-   const Home = ({ shelf1,shelf2,shelf3,moveshelf})=>{
+   function Home ({ shelf1,shelf2,shelf3,moveshelf}){
  
        
           return(
