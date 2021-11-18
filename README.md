@@ -42,10 +42,14 @@ e) The user is able to search for multiple words, such as “artificial intellig
 -The code runs without errors. There are no warnings that resulted from not following the best practices listed in the documentation, such as using key for list items. All code is functional and formatted properly.(Done)
 
 ## Resources
-*The entire project is designed with The singular developer effort, which used some of the videos and explanations for give methods  and Solutions for problems on YouTube Network
+*The entire project is designed with The singular developer effort, which used some of the videos and explanations  on YouTube Network for give methods  and Solutions for problems.
+
 -https://www.youtube.com/watch?v=WLc6hFXmc7w
+
 -https://www.youtube.com/watch?v=bpKI3R0nf7E
+
 -https://www.youtube.com/watch?v=DNdZ3-MiF1E
+
 
 ## Developed by 
 *Ahmed Dabour
