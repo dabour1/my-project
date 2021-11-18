@@ -17,8 +17,31 @@ const [idMap, setIdMap] = useState([new Map()])
 const [request, setRequest] = useState("");
 const [searchbook, setSearchbook] = useState([]);
 const [combinebooks, setCombinebooks] = useState([]);
+const currentlyReading = data.filter((bo)=> bo.shelf === "currentlyReading");
+const wantToRead = data.filter((bo)=> bo.shelf === "wantToRead");
+const read = data.filter((bo)=> bo.shelf === "read");
 
-useEffect(() => {
+
+    const moveshelf = (book, gole) => {
+        const updatel = data.map(ar => {
+            if (ar.id === book.id) {
+                book.shelf = gole;
+                return book
+            }
+            return ar
+    
+        })
+        if(!idMap.has(book.id)){
+        book.shelf=gole;
+            updatel.push(book)  
+        }
+        setData(updatel);
+        BooksAPI.update(book, gole)
+    
+    }
+    
+
+    useEffect(() => {
         BooksAPI.getAll()
             .then(dt => {
 
@@ -27,6 +50,8 @@ useEffect(() => {
             });
     },
     []);
+
+
 useEffect(() => {
     let activ = true;
     if (request) {
@@ -49,41 +74,23 @@ useEffect(() => {
     }
 }, [request]);
 
+
 useEffect(() => {
-        const combine = searchbook.map(b => {
-            if (idMap.has(b.id)) {
-                return idMap.get(b.id)
-            } else {
-                return b
-            }
-        })
-        setCombinebooks(combine);
-    },
-    [searchbook]);
-const booksMap = (booke) => {
-    const map = new Map();
-    booke.map(books => map.set(books.id, books))
-    return map;
-}
-
-const moveshelf = (book, gole) => {
-    const updatel = data.map(ar => {
-        if (ar.id === book.id) {
-            book.shelf = gole;
-            return book
+    const combine = searchbook.map(b => {
+        if (idMap.has(b.id)) {
+            return idMap.get(b.id)
+        } else {
+            return b
         }
-        return ar
-
     })
-    if(!idMap.has(book.id)){
-    book.shelf=gole;
-        updatel.push(book)  
-    }
-    setData(updatel);
-    BooksAPI.update(book, gole)
-
+    setCombinebooks(combine);
+},
+[searchbook]);
+const booksMap = (booke) => {
+const map = new Map();
+booke.map(books => map.set(books.id, books))
+return map;
 }
-
 
 return (   
     <div className="app">
@@ -121,7 +128,7 @@ return (
         <Myhead />
         <div className="list-books-content">
         
-            <Home books={data} moveshelf={moveshelf} />
+            <Home shelf1={currentlyReading} shelf2={wantToRead} shelf3={read}  moveshelf={moveshelf} />
         </div>
         <div className="open-search">
             <Link to="/search">
@@ -143,6 +150,7 @@ return (
 
 
 export default App;
+
 
 
 
