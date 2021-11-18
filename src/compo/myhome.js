@@ -4,17 +4,15 @@ import Shellf from './myshellf'
 
 
 
-   const Home = ({ books,moveshelf})=>{
-      const currentlyReading = books.filter((bo)=> bo.shelf === "currentlyReading");
-      const wantToRead = books.filter((bo)=> bo.shelf === "wantToRead");
-      const read = books.filter((bo)=> bo.shelf === "read");
+   const Home = ({ shelf1,shelf2,shelf3,moveshelf})=>{
+ 
        
           return(
             <div>
             
-            <Shellf title="currentlyReading"booke={currentlyReading} moveshelf={moveshelf} />
-            <Shellf title="wantToRead" booke={wantToRead} moveshelf={moveshelf} />
-            <Shellf title="read" booke={read} moveshelf={moveshelf} />
+            <Shellf moveshelf={moveshelf} title="currentlyReading" booke={shelf1}  />
+            <Shellf  moveshelf={moveshelf} title="wantToRead" booke={shelf2} />
+            <Shellf  moveshelf={moveshelf} title="read"  booke={shelf3}   />
             </div>
           
           
