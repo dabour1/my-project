@@ -1,10 +1,10 @@
 import React,{useState,useEffect} from 'react'
 import { BrowserRouter as Router ,Switch, Route, Link } from 'react-router-dom'
-import Myhead from './compo/myhead'
 import * as BooksAPI from './BooksAPI'
-import Mybook from './compo/mybooks'
+import Cover from './compo/cover'
 import './App.css'
 import Home from './compo/myhome'
+
 
 
 
@@ -22,8 +22,8 @@ const wantToRead = data.filter((bo)=> bo.shelf === "wantToRead");
 const read = data.filter((bo)=> bo.shelf === "read");
 
 
-    const moveshelf = (book, gole) => {
-        const updatel = data.map(ar => {
+function moveshelf (book, gole)  {
+        const updatel = data.filter(ar => {
             if (ar.id === book.id) {
                 book.shelf = gole;
                 return book
@@ -40,10 +40,10 @@ const read = data.filter((bo)=> bo.shelf === "read");
     
     }
     
-
-    useEffect(() => {
+console.log(data)
+    useEffect(function() {
         BooksAPI.getAll()
-            .then(dt => {
+            .then( function(dt) {
 
                 setData(dt)
                 setIdMap(booksMap(dt))
@@ -52,22 +52,20 @@ const read = data.filter((bo)=> bo.shelf === "read");
     []);
 
 
-useEffect(() => {
+useEffect(function() {
     let activ = true;
     if (request) {
-        BooksAPI.search(request)
-            .then(dt => {
+               BooksAPI.search(request)
+            .then( function(dt) {
                 if (dt.error) {
                     setSearchbook([])
                 } else {
-                    if (activ) {
-
-
+                    if (activ){
                         setSearchbook(dt);
                     }
                 }
             });
-        return () => {
+        return  function()  {
             activ = false;
             setSearchbook([]);
         }
@@ -75,8 +73,8 @@ useEffect(() => {
 }, [request]);
 
 
-useEffect(() => {
-    const combine = searchbook.map(b => {
+useEffect(function() {
+    const combine = searchbook.map( function(b) {
         if (idMap.has(b.id)) {
             return idMap.get(b.id)
         } else {
@@ -86,10 +84,10 @@ useEffect(() => {
     setCombinebooks(combine);
 },
 [searchbook]);
-const booksMap = (booke) => {
-const map = new Map();
-booke.map(books => map.set(books.id, books))
-return map;
+function booksMap (booke)  {
+const bookmap = new Map();
+booke.map( function(books) {bookmap.set(books.id, books)})
+return bookmap;
 }
 
 return (   
@@ -112,10 +110,10 @@ return (
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                {combinebooks.map( c => ( 
+                {combinebooks.map(function( c) {return ( 
                     <li key={c.id}>
-                    <Mybook   book={c} moveshelf={moveshelf}/>
-                    </li> ))}
+                    <Cover   book={c} moveshelf={moveshelf}/>
+                    </li> )})}
                 </ol>
             </div>
             </div>
@@ -125,7 +123,10 @@ return (
             <Route path="/">
 
     <div className="list-books">
-        <Myhead />
+        
+    <div className="list-books-title">
+              <h1>MyReads</h1>
+            </div>)
         <div className="list-books-content">
         
             <Home shelf1={currentlyReading} shelf2={wantToRead} shelf3={read}  moveshelf={moveshelf} />
