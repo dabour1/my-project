@@ -1,6 +1,7 @@
 import React from 'react';
 import Mybook from './mybooks';
-const Shellf=({title ,booke , moveshelf})=> {
+import Cover from './cover'
+function Shellf ({title ,booke , moveshelf}) {
   
         return( 
           <div className="bookshelf">
@@ -9,7 +10,8 @@ const Shellf=({title ,booke , moveshelf})=> {
                     <ol className="books-grid">
                       {booke.map( c => ( 
                       <li  key={c.id}>
-                      <Mybook book={c} moveshelf={moveshelf}/>
+                        <Cover  book={c} moveshelf={moveshelf} />
+                      
                       </li> ))}
                       
        
