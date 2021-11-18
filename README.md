@@ -6,7 +6,7 @@ The project offers a wide range of books,You can search for these books on the s
 
 - Clone the project - `https://github.com/dabour1/my-project.git`
 - Install the dependencies - `npm install`
-- Please install react-router-dom @5.2.0 Not subsequent versions To avoid "<switch/>" problems  
+- Please install react-router-dom @5.2.0 Not subsequent versions To avoid "switch />" problems  
 
 
 ## Project requirements
